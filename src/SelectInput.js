@@ -9,10 +9,13 @@ import {
   Platform,
   StyleSheet,
 } from 'react-native';
+
 import Icon, { ARROW_ICON_TYPES } from './Icon';
 import Picker from './Picker';
 import Loading from './Loading';
 import { testProperties } from './TestProperties';
+import scale from './scale';
+import { PRIMARY_BLUE, PRIMARY_LIGHT_BLUE } from './colors';
 
 class SelectInput extends Component {
   static propTypes = {
@@ -213,38 +216,6 @@ class SelectInput extends Component {
     );
   };
 
-  renderLabel = () => {
-    const {
-      label,
-      renderLabel,
-      disabled,
-      loading,
-      labelProps,
-      labelStyle,
-    } = this.props;
-
-    if (renderLabel) {
-      return renderLabel();
-    }
-
-    if (!label) {
-      return;
-    }
-
-    return (
-      <Text
-        {...labelProps}
-        style={[
-          this.styles.label,
-          (disabled || loading) && this.styles.labelDisabled,
-          labelStyle,
-        ]}
-      >
-        {label}
-      </Text>
-    );
-  };
-
   render() {
     const { value, optionsVisible } = this.state;
     const {
@@ -273,8 +244,6 @@ class SelectInput extends Component {
               innerContainerStyle,
             ]}
           >
-            {this.renderLabel()}
-
             <View style={[this.styles.valueContainer, valueContainerStyle]}>
               {this.renderValue()}
 
@@ -307,40 +276,31 @@ class SelectInput extends Component {
 
 const styles = ({ colors }) => StyleSheet.create({
   container: {
-    zIndex: 1,
     flex: 1,
   },
   innerContainer: {
-    flex: 1,
-    marginBottom: 28,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.light,
-    paddingVertical: 10,
+    height: scale(38),
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: PRIMARY_BLUE,
+    borderRadius: 5,
+    paddingHorizontal: scale(10),
   },
   activeInnerContainer: {
-    borderBottomWidth: 2,
-    borderBottomColor: colors.dark,
-  },
-  label: {
-    color: colors.normal,
-    fontSize: 14,
-  },
-  labelDisabled: {
-    color: colors.normal,
+    borderWidth: 1,
+    borderColor: PRIMARY_BLUE,
   },
   valueContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
   },
   loadingContainer: {
-    paddingTop: Platform.OS === 'ios' ? 9 : 15,
+    alignSelf: 'center'
   },
   value: {
-    fontSize: 14,
-    color: colors.dark,
-    paddingTop: Platform.OS === 'ios' ? 9 : 15,
-    marginRight: 15,
+    fontSize: scale(14),
+    color: PRIMARY_BLUE,
+    fontWeight: '600',
   },
   valueDisabled: {
     color: colors.normal,

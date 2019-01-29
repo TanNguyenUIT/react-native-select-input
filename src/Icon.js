@@ -2,6 +2,9 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Image, Platform, StyleSheet } from 'react-native';
 
+import scale from './scale';
+import { PRIMARY_BLUE } from './colors'
+
 const ARROW_ICON_TYPES = {
   UP: 'UP',
   DOWN: 'DOWN',
@@ -51,9 +54,10 @@ class Icon extends PureComponent {
 
 const styles = StyleSheet.create({
   image: {
-    width: 8,
-    height: 5,
-    marginTop: Platform.OS === 'ios' ? 9 : 15,
+    width: scale(20),
+    height: scale(20),
+    alignSelf: 'center',
+    tintColor: PRIMARY_BLUE
   },
 });
 
