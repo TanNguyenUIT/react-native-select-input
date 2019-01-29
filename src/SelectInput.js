@@ -216,6 +216,38 @@ class SelectInput extends Component {
     );
   };
 
+  renderLabel = () => {
+    const {
+      label,
+      renderLabel,
+      disabled,
+      loading,
+      labelProps,
+      labelStyle,
+    } = this.props;
+
+    if (renderLabel) {
+      return renderLabel();
+    }
+
+    if (!label) {
+      return;
+    }
+
+    return (
+      <Text
+        {...labelProps}
+        style={[
+          this.styles.label,
+          (disabled || loading) && this.styles.labelDisabled,
+          labelStyle,
+        ]}
+      >
+        {label}
+      </Text>
+    );
+  };
+
   render() {
     const { value, optionsVisible } = this.state;
     const {
@@ -244,6 +276,8 @@ class SelectInput extends Component {
               innerContainerStyle,
             ]}
           >
+            {this.renderLabel()}
+
             <View style={[this.styles.valueContainer, valueContainerStyle]}>
               {this.renderValue()}
 
@@ -277,6 +311,7 @@ class SelectInput extends Component {
 const styles = ({ colors }) => StyleSheet.create({
   container: {
     flex: 1,
+    zIndex: 1,
   },
   innerContainer: {
     height: scale(38),
@@ -303,6 +338,9 @@ const styles = ({ colors }) => StyleSheet.create({
     fontWeight: '600',
   },
   valueDisabled: {
+    color: colors.normal,
+  },
+  labelDisabled: {
     color: colors.normal,
   },
 });
