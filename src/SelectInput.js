@@ -189,6 +189,10 @@ class SelectInput extends Component {
     this.setState(prevState => ({
       optionsVisible: !prevState.optionsVisible,
     }));
+
+    if (!this.state.value) {
+      this.setState({ value: this.props.options[0].value });
+    }
   };
 
   renderValue = () => {
