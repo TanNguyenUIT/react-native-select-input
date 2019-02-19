@@ -184,15 +184,15 @@ class SelectInput extends Component {
       return;
     }
 
+    if (!this.state.value && this.props.options) {
+      this.setState({ value: this.props.options[0].value });
+    }
+
     Keyboard.dismiss();
 
     this.setState(prevState => ({
       optionsVisible: !prevState.optionsVisible,
     }));
-
-    if (!this.state.value) {
-      this.setState({ value: this.props.options[0].value });
-    }
   };
 
   renderValue = () => {
