@@ -142,6 +142,7 @@ const styles = ({ colors }) => StyleSheet.create({
         width: 1000,
         height: 1000,
         zIndex: 0,
+        color: 'transparent',
       },
     }),
   },
