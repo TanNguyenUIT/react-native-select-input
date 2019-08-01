@@ -4,7 +4,7 @@ import {
   View,
   ViewPropTypes,
   Text,
-  TouchableWithoutFeedback,
+  TouchableOpacity,
   Keyboard,
   Platform,
   StyleSheet,
@@ -269,9 +269,8 @@ class SelectInput extends Component {
 
     return (
       <View style={[this.styles.container, containerStyle]}>
-        <TouchableWithoutFeedback
+        <TouchableOpacity
           onPress={this.handleToggleShowOptions}
-          {...testProperties('select', testProperty)}
         >
           <View
             style={[
@@ -294,7 +293,7 @@ class SelectInput extends Component {
               />
             </View>
           </View>
-        </TouchableWithoutFeedback>
+        </TouchableOpacity>
 
         {(!disabled && !loading) && (
           <Picker
