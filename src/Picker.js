@@ -103,7 +103,7 @@ class Picker extends Component {
         transparent
         onRequestClose={toggleShowOptions}
       >
-        <TouchableWithoutFeedback onPress={toggleShowOptions} accessible={false}>
+        <TouchableWithoutFeedback accessible={false}>
           <View style={this.styles.pickerCloseAreaContainer}>
             <SlideUpAnimation visible={showPicker}>
               <PickerHeader
